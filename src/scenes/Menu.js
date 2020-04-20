@@ -5,8 +5,11 @@ class Menu extends Phaser.Scene {
     preload() {
       // audio
       this.load.audio('sfx_select', './assets/blip_select12.wav');
-      this.load.audio('sfx_explosion', './assets/explosion38.wav');
-      this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+      this.load.audio('sfx_explosion', './assets/new.mp3');
+      this.load.audio('sfx_rocket', './assets/num2.mp3');
+      this.load.audio('song', './assets/song.mp3');
+      this.load.image('back', './assets/back.png');
+      this.load.image('spaceship', './assets/apple2.png');
   }
     create() {
       let menuConfig = {
@@ -24,11 +27,15 @@ class Menu extends Phaser.Scene {
         }
 
     //show menu
+    this.starfield = this.add.tileSprite(0, 0, 640, 480, 'back').setOrigin(0, 0);
+    
     let centerX = game.config.width/2;
     let centerY = game.config.height/2;
     let textSpacer = 64;
 
-    this.add.text(centerX, centerY- textSpacer, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
+    
+
+    this.add.text(150,90, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
     this.add.text(centerX, centerY, 'Use <--> arrows to move & f to fire', menuConfig).setOrigin(0.5);
     menuConfig.backgroundColor = '#00FF00';
     menuConfig.color = '#000';
@@ -36,6 +43,7 @@ class Menu extends Phaser.Scene {
     // define keys
     keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
     keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+    
 
     
 
@@ -44,6 +52,8 @@ class Menu extends Phaser.Scene {
   }
 
   update() {
+    //this.sound.play('song');
+
     if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
       // easy mode
       game.settings = {
@@ -51,7 +61,8 @@ class Menu extends Phaser.Scene {
         gameTimer: 60000    
       }
       this.sound.play('sfx_select');
-      this.scene.start("playScene");    
+      this.scene.start("playScene");
+      this.sound.play('song');    
     }
     if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
       // hard mode
@@ -60,7 +71,8 @@ class Menu extends Phaser.Scene {
         gameTimer: 45000   
       }
       this.sound.play('sfx_select');
-      this.scene.start("playScene");    
+      this.scene.start("playScene");
+      this.sound.play('song');    
     }
   }
 }

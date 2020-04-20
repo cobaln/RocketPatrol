@@ -1,3 +1,15 @@
+//Henry Nguyen 1616069
+//Fire Ui text 10 
+//copy right free music 10
+//4 new random explosions 15
+//new title screen 15
+//Redesigning game 50
+
+
+
+
+
+
 let config = {
     type: Phaser.CANVAS,
     width: 640,
